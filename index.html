@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827"><title>ПравоСправка — правовая база</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand" onclick="app.go('home')"><div class="brand-mark">П</div><div><strong>ПравоСправка</strong><span>правовая информационная система</span></div></div>
+  <nav>
+    <button class="nav active" data-go="home">Документы</button>
+    <button class="nav" data-go="favorites">Избранное</button>
+    <button class="nav admin-only hidden" data-go="admin">Администрирование</button>
+  </nav>
+  <div class="account"><span id="userLabel">Гость</span><button id="authBtn" class="secondary-btn">Войти</button></div>
+</header>
+<main>
+<section id="home" class="view">
+  <div class="hero"><div><div class="eyebrow">Единая правовая база</div><h1>Правовая база</h1><p>Поиск и просмотр нормативных документов.</p></div><div class="hero-stat"><b id="docCount">0</b><span>документов</span></div></div>
+  <div class="search-panel"><input id="search" placeholder="Поиск по названию, номеру, статье или тексту…"><select id="type"><option value="">Все виды</option></select><select id="status"><option value="">Все статусы</option><option>Действует</option><option>Утратил силу</option></select></div>
+  <div class="layout"><aside class="sidebar"><h3>Разделы</h3><button class="cat active" data-cat="">Все документы</button><button class="cat" data-cat="Конституция">Конституция</button><button class="cat" data-cat="Кодекс">Кодексы</button><button class="cat" data-cat="Федеральный закон">Федеральные законы</button><button class="cat" data-cat="Подзаконный акт">Подзаконные акты</button></aside><section><div class="results-head"><span id="results">Документы</span></div><div id="list" class="law-list"></div></section></div>
+</section>
+<section id="favorites" class="view hidden"><div class="page-head"><div class="eyebrow">Личная подборка</div><h1>Избранное</h1></div><div id="favList" class="law-list"></div></section>
+<section id="document" class="view hidden"><div class="document-toolbar"><button class="back-btn" onclick="app.go('home')">← К документам</button><div><button id="favDoc" class="secondary-btn">☆ В избранное</button><button id="editDoc" class="secondary-btn admin-only hidden">✎ Редактировать</button></div></div><article id="doc"></article></section>
+<section id="admin" class="view hidden"><div class="page-head"><div><div class="eyebrow">Только для администратора</div><h1>Администрирование</h1><p>Изменения публикуются в общей базе и становятся видны всем посетителям.</p></div><button class="primary-btn" onclick="app.edit()">＋ Новый документ</button></div><div id="adminTable" class="admin-table"></div></section>
+</main>
+<footer><span>ПравоСправка</span><span>Данные хранятся в общей базе Supabase</span></footer>
+
+<div id="authModal" class="modal hidden"><div class="modal-box small"><div class="modal-head"><h2 id="authTitle">Вход</h2><button onclick="app.closeAuth()">×</button></div><form id="authForm"><label>Email<input id="email" type="email" required></label><label>Пароль<input id="password" type="password" minlength="6" required></label><p id="authError" class="error"></p><div class="form-actions"><button type="button" class="secondary-btn" onclick="app.toggleAuth()">Регистрация</button><button class="primary-btn">Войти</button></div></form></div></div>
+
+<div id="lawModal" class="modal hidden"><div class="modal-box"><div class="modal-head"><h2 id="lawModalTitle">Документ</h2><button onclick="app.closeLaw()">×</button></div><form id="lawForm"></form></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body></html>
