@@ -10,7 +10,10 @@ const app={
    document.querySelector("#type").onchange=()=>this.render();
    document.querySelector("#status").onchange=()=>this.render();
    document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>{S.cat=b.dataset.cat;document.querySelectorAll(".cat").forEach(x=>x.classList.toggle("active",x===b));this.render()});
-   document.querySelector("#authBtn").onclick=()=>S.user?this.logout():this.openAuth();
+   document.querySelector("#registerBtn").onclick=()=>{
+    S.authRegister=true;
+    this.openAuth();
+};
    document.querySelector("#authForm").onsubmit=e=>this.auth(e);
    sb.auth.onAuthStateChange((_e,s)=>this.session(s));
    const {data}=await sb.auth.getSession(); await this.session(data.session);
