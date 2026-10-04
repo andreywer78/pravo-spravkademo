@@ -1,4 +1,4 @@
 // Заполните эти два значения из Supabase.
 // ВАЖНО: используйте только anon/public key. service_role key сюда помещать НЕЛЬЗЯ.
-window.SUPABASE_URL = "https://YOUR-PROJECT.supabase.co";
-window.SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+window.SUPABASE_URL = "https://uiwtigdyljdfstdmainx.supabase.co/rest/v1/";
+window.SUPABASE_ANON_KEY = "sb_publishable_3U7bybhgOOfSgDou1sbU9w_LJ_E4WjK";
