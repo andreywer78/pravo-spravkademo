@@ -25,7 +25,13 @@ const app={
  },
  async load(){
    const {data,error}=await sb.from("laws").select("*").order("title");
-   if(error){console.error(error);return alert("Не удалось загрузить базу: "+error.message)}
+   if(error){
+    console.error("Supabase error:", error);
+    S.laws = [];
+    this.fillTypes();
+    this.render();
+    return;
+}
    S.laws=data||[];this.fillTypes();this.render();this.renderFav();if(S.admin)this.renderAdmin();
  },
  fillTypes(){const a=[...new Set(S.laws.map(x=>x.type))].sort();document.querySelector("#type").innerHTML='<option value="">Все виды</option>'+a.map(x=>`<option>${esc(x)}</option>`).join("")},
